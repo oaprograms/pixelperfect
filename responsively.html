@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Responsively</title>
+
+  <style type="text/css">
+  body,html{padding:0;margin:0;font-family:Roboto,sans-serif;color:#666;font-size:16px}#toolbar .subtitle,#toolbar .title,.code{font-family:'Roboto Mono',monospace}.noselect{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.block{margin-top:10px;padding:6px 14px;font-size:14px}#toolbar .title{cursor:move;text-align:center;color:#aaa;background-color:#eee;padding:5px}#toolbar .subtitle{margin-top:25px;margin-bottom:15px;text-align:center;color:#999;font-size:14px}.move-icon{width:32px;height:32px;margin:-7px -7px -7px 0;opacity:.3;float:left}#toolbar .title:hover{background-color:#f5f5f5}#toolbar{position:fixed;z-index:100000;right:50px;top:100px;width:220px;padding:12px;background-color:#ddd;border:1px solid #fff}#toolbar .text{background-color:#42ff00}#toolbar .style{background-color:#FFB6C1}#toolbar .coords{background-color:#fff}#dropzone{width:500px;border:1px dashed #ababab;margin:100px auto}#dropzone p{text-align:center;padding:100px 0;margin:0}#image{position:relative}.btn,.layer{position:absolute}.layer{border:1px solid rgba(255,0,0,.5);margin:-1px}.layer:hover{background-color:rgba(180,180,180,.25);margin:-2px;border:2px solid red}.btn{right:0;top:0;opacity:0;background-color:#555;color:#42ff00;padding:2px 5px;cursor:pointer;border:1px solid #333}.sty{right:39px;color:#FFB6C1}.transp{background:0 0;opacity:.001;border:0;width:5px;height:5px}.layer:hover .btn{opacity:1}.layer .btn:hover{background-color:#888}#rulerX,#rulerY{background-color:#bbb;position:absolute;pointer-events:none}#rulerX{height:2px}#rulerY{width:2px}.size-icon{display:inline-block;width:20px;text-align:center;padding:3px}.limit-height{max-height:150px;overflow-y:auto}#howitworks{margin:30px auto;max-width:500px}#howitworks video{width:100%}
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="psd.min.js"></script>
+  <script type="text/javascript" src="jquery-ui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.16/clipboard.min.js"></script>
+</head>
+<body>
+
+  <div id="dropzone">
+    <p>
+		Drop PSD file here
+	</p>
+  </div>
+  
+  <div id="howitworks">
+	<h4>How it works:</h4>
+	<video autoplay loop src="sample.mp4"></video>
+  </div>
+	
+  <div id="toolbar">
+    <div class="title">
+		<!--move icon-->
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" class="move-icon">
+		  <path d="M73 48.4l-10.4-9.6v4.8H52.4V33.4h4.8L47.6 23l-8.9 10.4h4.8v10.2H33.4v-4.8L23 48.4l10.4 8.9v-4.8h10.2v10.2h-4.8L47.6 73l9.6-10.4h-4.8V52.4h10.2v4.8L73 48.4z"/>
+		</svg>
+		Responsively
+	</div>
+	<div class="info">
+		<div class="text block limit-height"></div>
+		<div class="style code block"></div>
+		<div class="coords code block">
+			<div class="spacex"></div>
+			<div class="spacey"></div>
+		</div>
+	</div>
+	<div class="saved">
+		<div class="subtitle noselect">Saved (click to save):</div>
+		<div class="text block limit-height"></div>
+		<div class="style code block"></div>
+		<div class="coords code block">
+			<div class="spacex"></div>
+			<div class="spacey"></div>
+		</div>
+	</div>
+  </div>
+
+  <div id="image">
+	<div id="rulerX"></div>
+	<div id="rulerY"></div>
+  </div>
+  <pre id="data"></pre>
+
+  <script type="text/javascript">
+  !function(){function e(a,b){for(var d=0,e=0;e<c.length;e++)o=c[e],o.left<a&&o.left>d&&o.top<=b&&o.height>=b-o.top&&(d=o.left),o.left+o.width<a&&o.left+o.width>d&&o.top<=b&&o.height>=b-o.top&&(d=o.left+o.width);return d}function f(a,b){for(var d=$("#image > img").width(),e=0;e<c.length;e++)o=c[e],o.left>a&&o.left<d&&o.top<=b&&o.height>=b-o.top&&(d=o.left),o.left+o.width>a&&o.left+o.width<d&&o.top<=b&&o.height>=b-o.top&&(d=o.left+o.width);return d}function g(a,b){for(var d=0,e=0;e<c.length;e++)o=c[e],o.top<b&&o.top>d&&o.left<=a&&o.width>=a-o.left&&(d=o.top),o.top+o.height<b&&o.top+o.height>d&&o.left<=a&&o.width>=a-o.left&&(d=o.top+o.height);return d}function h(a,b){for(var d=$("#image > img").height(),e=0;e<c.length;e++)o=c[e],o.top>b&&o.top<d&&o.left<=a&&o.width>=a-o.left&&(d=o.top),o.top+o.height>b&&o.top+o.height<d&&o.left<=a&&o.width>=a-o.left&&(d=o.top+o.height);return d}function i(a,b){var c=$("#rulerX"),d=$("#rulerY");c.css("top",b+"px");var i=e(a,b);c.css("left",i+"px");var j=f(a,b)-i;c.css("width",j+"px"),d.css("left",a+"px");var k=g(a,b);d.css("top",k+"px");var l=h(a,b)-k;d.css("height",l+"px"),$tool=$("#toolbar .info"),$tool.find(".spacex").html('<span class="size-icon noselect">⬌</span>'+(j>0?j+"px":j)),$tool.find(".spacey").html('<span class="size-icon noselect">⬍</span>'+(l>0?l+"px":l))}function j(a){a.stopPropagation(),a.preventDefault(),a.dataTransfer.dropEffect="copy"}function k(a,b){if(!a)return!1;for(var c=!0,d=0;d<b.length;d++)a.hasOwnProperty(b[d])&&a[b[d]]||(c=!1);return c}function l(a,b,c){for(var d=Object.keys(a),e=0;e<d.length;e++){var f=a[d[e]];k(f,b)&&c.push(f)}for(var e=0;e<d.length;e++){var f=a[d[e]];"object"==typeof f&&l(f,b,c)}}function m(a,b,c){function d(a){var b=a.toString(16);return 1==b.length?"0"+b:b}var e=d(a)+d(b)+d(c);return e[0]==e[1]&&e[2]==e[3]&&e[4]==e[5]?"#"+e[0]+e[2]+e[4]:"#"+e}function n(a){var b="",c="",d="",e="";if(a.text&&a.text.font){var f=a.text.font.name;f&&(b="font-family: '"+f+"';");var g=a.text.font.colors;if(g&&g.length){var h=g[0];if(255==h[3])c="color: "+m(h[0],h[1],h[2])+";";else{var i=parseFloat(h[3])/255;c="color: rgba("+h[0]+", "+h[1]+", "+h[2]+", "+Math.round(1e3*i)/1e3+");"}}var j=a.text.font.sizes;if(j&&j.length){var k=parseFloat(j[0]);d="font-size: "+Math.round(2*k)/2+"px;"}var l=a.text.font.alignment;l&&l.length&"left"!=l[0]&&(e="text-align: "+l[0]+";")}var n="";return b&&(n+=b+"\n\n"),c&&(n+=c+"\n"),d&&(n+=d+"\n"),e&&(n+=e+"\n"),n}function p(a,b,c,d,e,f){$tool=$("#toolbar .info "),$tool.find(".text").html(a),$tool.find(".style").html(b)}function q(e){e.stopPropagation(),e.preventDefault(),$(d).find("p").html("Loading... <br><br> (This could take a few seconds)"),$("#howitworks").hide(),a.fromEvent(e).then(function(a){$(d).find("p").html("Extracting image... <br><br> (This could take a few seconds)"),setTimeout(function(){document.getElementById("image").appendChild(a.image.toPng()),$(d).find("p").html("Extracting layers... <br><br> (This could take a few seconds)"),setTimeout(function(){l(a.tree().export(),["left","top","width","height"],c),$(d).find("p").html("Initializing GUI... <br><br> (This could take a few seconds)"),setTimeout(function(){for(var a=0;a<c.length;a++){var e=c[a];e.left=parseInt(e.left),e.width=parseInt(e.width),e.top=parseInt(e.top),e.height=parseInt(e.height);var f=n(e),g="";if(e.text&&console.log(e),e.text){var h=e.text.value;g='<div class="layer" style="z-index: 10000; top: '+e.top+"px; left: "+e.left+"px; width: "+e.width+"px; height: "+e.height+'px"><textarea class="transp" id="text'+a+'" class="inp-text">'+h+'</textarea><textarea class="transp" id="sty'+a+'" class="inp-style">'+f+'</textarea><button class="btn" title="copy text to clipboard" data-clipboard-target="#text'+a+'">copy<br>txt</button><button class="btn sty" title="copy styles to clipboard" data-clipboard-target="#sty'+a+'">copy<br>css</button></button></div>'}else g='<div class="layer" style="z-index: '+a+"; top: "+e.top+"px; left: "+e.left+"px; width: "+e.width+"px; height: "+e.height+'px"></div>';var i=$(g);i.data("style",f),i.data("text",h),i.appendTo(b)}new Clipboard(".btn"),$(d).hide()})})})})}var a=require("psd"),b=$("#image"),c=[],d=document.getElementById("dropzone");d.addEventListener("dragover",j,!0),d.addEventListener("drop",q,!0),b.on("mousemove",".layer",function(a){var b=$(this),c=b.parent().offset(),d=(b.data("text")||"").split("\n").join("<br>"),e=(b.data("style")||"").split("\n").join("<br>");p(d,e),i(a.pageX-c.left,a.pageY-c.top)}),b.on("click",".layer",function(){$info=$("#toolbar .info "),$saved=$("#toolbar .saved "),$saved.find(".text").html($info.find(".text").html()),$saved.find(".style").html($info.find(".style").html()),$saved.find(".spacex").html($info.find(".spacex").html()),$saved.find(".spacey").html($info.find(".spacey").html())}),$("#toolbar").draggable({handle:".title",stop:function(a,b){function c(a){var b=a.offset().top,c=$(window).scrollTop(),d=b-c;return d}var d=c(b.helper);b.helper.css("position","fixed"),b.helper.css("top",d+"px")}})}();
+  </script>
+</body>
+</html>
