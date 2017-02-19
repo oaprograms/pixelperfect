@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Responsively</title>
+    <title>PixelPerfect</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono" rel="stylesheet">
+    <link href="jquery-ui.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.16/clipboard.min.js"></script>
@@ -29,8 +30,9 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" class="move-icon">
             <path d="M73 48.4l-10.4-9.6v4.8H52.4V33.4h4.8L47.6 23l-8.9 10.4h4.8v10.2H33.4v-4.8L23 48.4l10.4 8.9v-4.8h10.2v10.2h-4.8L47.6 73l9.6-10.4h-4.8V52.4h10.2v4.8L73 48.4z"/>
         </svg>
-        Responsively
+        PixelPerfect
     </div>
+    <a id="statsBtn" href="#" style="display:none;">&lt;info&gt;</a>
     <div class="saved">
         <div class="subtitle noselect">Saved (on click):</div>
         <div class="coords code block clearfix"></div>
@@ -58,13 +60,42 @@
     </div>
 </div>
 
-<div id="image">
+<div id="image" class="noselect">
+    <div id="layers"></div>
     <div id="rulerX"></div>
     <div id="rulerY"></div>
+    <div id="selection" class="noselect" style="display: none;"></div>
 </div>
 <pre id="data"></pre>
 
+<div id="statsDialog" title="File info">
+    <p class="stats-text"></p>
+</div>
+
+<img src="images/copy.png" alt="" id="copyImg" style="display: none;">
 
 <script type="text/javascript" src="app.min.js"></script>
+<!--<script type="text/javascript" src="js/main.js"></script>-->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-73113587-5', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<script type="text/javascript">
+    window.doorbellOptions = {
+        appKey: '9DbSmr9OV75IJXxIG6vwQMJ28DhkWqX67SilpQ6ypskopQULoinzrn9nTvHjWX8M'
+    };
+    (function(w, d, t) {
+        var hasLoaded = false;
+        function l() { if (hasLoaded) { return; } hasLoaded = true; window.doorbellOptions.windowLoaded = true; var g = d.createElement(t);g.id = 'doorbellScript';g.type = 'text/javascript';g.async = true;g.src = 'https://embed.doorbell.io/button/5746?t='+(new Date().getTime());(d.getElementsByTagName('head')[0]||d.getElementsByTagName('body')[0]).appendChild(g); }
+        if (w.attachEvent) { w.attachEvent('onload', l); } else if (w.addEventListener) { w.addEventListener('load', l, false); } else { l(); }
+        if (d.readyState == 'complete') { l(); }
+    }(window, document, 'script'));
+</script>
 </body>
 </html>

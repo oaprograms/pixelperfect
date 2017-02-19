@@ -57,14 +57,20 @@ body, html {
     background-color: #ddd;
     border: 1px solid #fff;
 }
-#toolbar .text {
+#toolbar .saved .text {
     background-color: #42ff00;
 }
-#toolbar .style {
+#toolbar .saved .style {
     background-color: #FFB6C1;
 }
-#toolbar .coords {
+#toolbar .saved .coords {
     background-color: #fff;
+}
+#toolbar .info .style {
+    background-color: rgba(255,182,193,.5)
+}
+#toolbar .info .coords {
+    background-color: rgba(255,255,255, .5);
 }
 #dropzone {
     width: 500px;
@@ -83,11 +89,11 @@ body, html {
     position: absolute;
 }
 #image:hover .layer {
-    border: 1px solid rgba(255,0,0,.5);
+    border: 1px solid rgba(255,0,0,.3);
     margin: -1px;
 }
 #image .layer:hover {
-    background-color: rgba(180, 180, 180, .25);
+    /*background-color: rgba(180, 180, 180, .25);*/
     margin: -2px;
     border: 2px solid red;
 }
@@ -127,6 +133,10 @@ body, html {
     position: absolute;
     width: 2px;
     pointer-events: none;
+}
+#selection {
+    border: 1px solid red;
+    position: absolute;
 }
 .size-icon {
     display: inline-block;
@@ -171,8 +181,30 @@ body, html {
 #toolbar .info.initial .color-hex {
     display: none;
 }
+#statsBtn {
+    color: #81b1e4;
+    text-align: right;
+    display: block;
+    margin-top: 5px;
+    text-decoration: none;
+    outline: 0;
+}
+#statsBtn:hover {
+    color: #6b93bd;
+}
 .clearfix:after {
     content: "";
     display: table;
     clear: both;
+}
+.ui-front {
+    z-index: 200000;
+}
+.stats-text {
+    max-height: 400px;
+    overflow: auto;
+}
+#copyImg {
+    position: absolute;
+    z-index: 300000;
 }
